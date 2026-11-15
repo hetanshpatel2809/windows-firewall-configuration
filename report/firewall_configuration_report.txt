@@ -1,0 +1,84 @@
+# Windows Firewall Configuration and Testing Report
+
+## 1. Objective
+
+To configure and test basic firewall rules on Windows 11 using Windows Defender Firewall. The objective was to understand how firewall rules control incoming network traffic.
+
+## 2. Operating System and Tools
+
+- Operating System: Windows 11
+- Firewall: Windows Defender Firewall with Advanced Security
+- Configuration Method: Graphical User Interface (GUI)
+- Testing Tool: Windows PowerShell
+
+## 3. Firewall Configuration
+
+A new inbound firewall rule was created to block incoming TCP traffic on port 23, which is commonly associated with Telnet.
+
+### Rule Details
+
+| Setting | Configuration |
+|---|---|
+| Rule Name | Task4-Block-Telnet |
+| Direction | Inbound |
+| Protocol | TCP |
+| Local Port | 23 |
+| Action | Block the connection |
+| Profiles | Domain, Private, Public |
+| Status | Enabled during testing |
+
+## 4. Configuration Steps
+
+1. Opened Windows Defender Firewall with Advanced Security using `wf.msc`.
+2. Selected Inbound Rules.
+3. Created a new rule and selected Port.
+4. Selected TCP and entered local port 23.
+5. Selected Block the connection.
+6. Applied the rule to Domain, Private, and Public profiles.
+7. Named the rule `Task4-Block-Telnet`.
+8. Verified the rule properties.
+
+## 5. Testing and Verification
+
+The following PowerShell command was used to check whether a service was listening on TCP port 23:
+
+`Get-NetTCPConnection -State Listen -LocalPort 23 -ErrorAction SilentlyContinue`
+
+**Observation:** No output was returned, indicating that no TCP service was listening on local port 23 at the time of testing.
+
+The firewall rule was also verified using PowerShell. The expected configuration was:
+
+- Enabled: True
+- Direction: Inbound
+- Action: Block
+
+The rule was subsequently deleted after verification.
+
+**Testing limitation:** Since no service was listening on port 23, an actual blocked connection could not be demonstrated. The test verified the firewall rule configuration rather than proving traffic was blocked.
+
+## 6. Result
+
+Successfully created and verified an inbound firewall rule that blocks TCP traffic on port 23.
+
+The temporary test rule was removed after testing, leaving the original firewall configuration unchanged by this exercise.
+
+## 7. How a Firewall Works
+
+A firewall monitors incoming and outgoing network traffic based on predefined security rules.
+
+- Allow rules permit matching network traffic.
+- Block rules deny matching network traffic.
+- Inbound rules control traffic entering the computer.
+- Outbound rules control traffic leaving the computer.
+
+Firewalls help protect systems against unauthorized network access.
+
+## 8. Conclusion
+
+This practical exercise demonstrated how to configure, verify, and remove a firewall rule using Windows Defender Firewall in Windows 11.
+
+It provided practical knowledge of inbound traffic filtering, TCP ports, and basic host-level network security.
+
+## 9. Disclaimer
+
+This exercise was performed on my own Windows 11 computer for educational and cybersecurity learning purposes.
