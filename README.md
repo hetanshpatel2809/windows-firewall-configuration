@@ -1,4 +1,3 @@
-# windows-firewall-configuration
 # Windows Firewall Configuration and Testing
 
 ## About the Project
